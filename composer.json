@@ -8,5 +8,11 @@
             "email": "jonidev@gmail.com"
         }
     ],
+    "autoload" : {
+        "psr-0" : {
+            "nacholibre\\NewsBundle" : ""
+        }
+    },
+    "target-dir" : "nacholibre/NewsBundle",
     "require": {}
 }
