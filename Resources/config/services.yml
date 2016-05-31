@@ -1,0 +1,6 @@
+services:
+    add_form:
+        class: nacholibre\NewsBundle\Form\PostType
+        arguments: ['@service_container']
+        tags:
+            - { name: form.type }
