@@ -4,7 +4,7 @@ namespace nacholibre\NewsBundle\Services;
 
 class NewsManager {
     function __construct($em, $config) {
-        $this->className = $config['post_class'];
+        $this->className = $config['entity_class'];
         $this->em = $em;
     }
 
