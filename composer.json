@@ -9,10 +9,8 @@
         }
     ],
     "autoload" : {
-        "psr-0" : {
-            "nacholibre\\NewsBundle" : ""
+        "psr-4" : {
+            "nacholibre\\NewsBundle\\" : ""
         }
-    },
-    "target-dir" : "nacholibre/NewsBundle",
-    "require": {}
+    }
 }

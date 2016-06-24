@@ -1,0 +1,18 @@
+{% extends "@App/layout.html.twig" %}
+
+{% block title %}
+{{ post.title }}
+{{ parent() }}
+{% endblock %}
+
+{% block content %}
+<h1>{{ post.title }}</h1>
+<hr>
+{{ post.content | raw }}
+<hr>
+{% for post in latest %}
+{{ nacholibre_news_post_link(post) }}
+{{ post.title }}
+<hr>
+{% endfor %}
+{% endblock %}

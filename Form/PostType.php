@@ -8,6 +8,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
+//use Cocur\Slugify\Slugify;
+//use EasySlugger\Slugger;
+//use nacholibre\Utils\Test;
 
 class PostType extends AbstractType
 {
@@ -15,6 +19,8 @@ class PostType extends AbstractType
 
     function __construct($container) {
         $this->container = $container;
+        $params = $container->getParameter('nacholibre_news');
+        $this->postClass = $params['entity_class'];
     }
 
     /**
@@ -25,8 +31,6 @@ class PostType extends AbstractType
     {
         $parameters = $this->container->getParameter('nacholibre_news');
         $editor = $parameters['editor'];
-
-        $slugger = (new \EasySlugger\Slugger())->slugify('Lorem Ipsum');
 
         $builder
             ->add('title', TextType::class, [
@@ -70,6 +74,13 @@ class PostType extends AbstractType
             //->add('createdAt', 'datetime')
             //->add('modifiedAt', 'datetime')
         ;
+
+        $builder->add('imageFile', VichImageType::class, array(
+            'label' => 'Post Photo',
+            'required'      => false,
+            'allow_delete'  => true, // not mandatory, default is true
+            'download_link' => false, // not mandatory, default is true
+        ));
     }
 
     /**
@@ -78,7 +89,9 @@ class PostType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'nacholibre\NewsBundle\Entity\Post'
+            //'data_class' => 'nacholibre\NewsBundle\Entity\Post'
+            //'data_class' => 'AppBundle\Entity\Post'
+            'data_class' => $this->postClass
         ));
     }
 }

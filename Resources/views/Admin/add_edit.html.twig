@@ -1,0 +1,26 @@
+{% extends "nacholibreAdminBundle::layout.html.twig" %}
+
+{% block pageHeaderTitle headerTitle | trans %}
+
+{% block content %}
+    {{ parent() }}
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <hr>
+        <input type="submit" value="{{ 'Save' | trans }}" class='btn btn-default btn-primary btn-lg' />
+    {{ form_end(form) }}
+
+    {#
+    <ul>
+        <li>
+            <a href="{{ path('post_index') }}">Back to the list</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    #}
+{% endblock %}

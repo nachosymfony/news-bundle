@@ -1,3 +1,0 @@
-nacholibre_news_homepage:
-    path:     /
-    defaults: { _controller: nacholibreNewsBundle:Default:index }

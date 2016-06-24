@@ -26,6 +26,17 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
+                ->scalarNode('entity_class')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end()
+                ->arrayNode('urls')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('type')->defaultValue('date_prefixed')->end()
+                        ->scalarNode('prefix')->defaultValue('')->end()
+                    ->end()
+                ->end()
                 ->arrayNode('editor')
                     ->addDefaultsIfNotSet()
                     ->children()

@@ -1,0 +1,54 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "2644ff81979562a27fe714aa75c3cbe0",
+    "content-hash": "37e5fca7c38761652d91c3c7ce7b97e1",
+    "packages": [
+        {
+            "name": "nacholibre/utils",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nacholibre/utils.git",
+                "reference": "2d64fbec7b7fb12b09646d9facba981d9f6869e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nacholibre/utils/zipball/2d64fbec7b7fb12b09646d9facba981d9f6869e1",
+                "reference": "2d64fbec7b7fb12b09646d9facba981d9f6869e1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.34"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Nacholibre\\Utils\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yoan Arnaudov",
+                    "email": "jonidev@gmail.com"
+                }
+            ],
+            "time": "2016-05-31 12:52:51"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

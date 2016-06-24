@@ -1,0 +1,10 @@
+{% extends "nacholibreAdminBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - {{ 'News' | trans }}{% endblock %}
+
+{% block pageHeaderTitle 'News' | trans %}
+
+{% block content %}
+{{ parent() }}
+{% include "nacholibreNewsBundle:Admin:_show_news.html.twig" %}
+{% endblock %}

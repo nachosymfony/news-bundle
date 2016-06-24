@@ -1,6 +1,35 @@
 services:
-    add_form:
+    add_news_form:
         class: nacholibre\NewsBundle\Form\PostType
         arguments: ['@service_container']
         tags:
             - { name: form.type }
+
+    nacholibre.news.manager:
+        class: nacholibre\NewsBundle\Services\NewsManager
+        arguments: ['@doctrine.orm.entity_manager', '%nacholibre_news%']
+        tags:
+            - { name: form.type }
+
+    post.subscriber:
+        class: nacholibre\NewsBundle\EventListener\PostSubscriber
+        arguments: ['@service_container']
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+
+    app.twig_extension:
+        class: nacholibre\NewsBundle\Twig\AppExtension
+        public: false
+        arguments: ['@service_container']
+        tags:
+            - { name: twig.extension }
+    app.routing_loader:
+        class: nacholibre\NewsBundle\Routing\NewsLoader
+        arguments: ['@service_container']
+        tags:
+            - { name: routing.loader }
+
+    namer.news:
+        class: nacholibre\AdminBundle\Utils\VichNamer
+        tags:
+            - { name: namer }
