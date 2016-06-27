@@ -20,7 +20,7 @@ class NewsManager {
             'active' => true
         ], [
             'id' => 'DESC'
-        ]);
+        ], $limit);
 
         return $posts;
     }
