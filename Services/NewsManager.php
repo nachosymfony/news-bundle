@@ -24,4 +24,15 @@ class NewsManager {
 
         return $posts;
     }
+
+    public function getActiveNewsQuery() {
+        $query = $this->em->createQuery('
+            SELECT post
+            FROM '.$this->className.' post
+            where post.active = true
+            ORDER BY post.id DESC
+        ');
+
+        return $query;
+    }
 }

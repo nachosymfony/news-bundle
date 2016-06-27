@@ -77,7 +77,7 @@ class NewsController extends Controller
     public function editAction(Request $request, $id)
     {
         $params = $this->getParameter('nacholibre_news');
-        $postClass = $params['post_class'];
+        $postClass = $params['entity_class'];
 
         $em = $this->getDoctrine()->getManager();
         $repo = $em->getRepository($postClass);
@@ -108,9 +108,14 @@ class NewsController extends Controller
      *
      * @Route("/delete/{id}", name="nacholibre.news.admin.delete")
      */
-    public function deleteAction(Post $post)
-    {
+    public function deleteAction($id) {
+        $params = $this->getParameter('nacholibre_news');
+        $postClass = $params['entity_class'];
+
         $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository($postClass);
+
+        $post = $repo->findOneBy(['id' => $id]);
         $em->remove($post);
         $em->flush();
 
