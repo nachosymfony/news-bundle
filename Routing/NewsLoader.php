@@ -43,8 +43,19 @@ class NewsLoader extends Loader {
             );
             $requirements = array(
                 'id' => '\d+',
+                'slug' => '.+',
             );
             break;
+        case "slug":
+            $path = $prefix . '/{slug}/';
+            $defaults = array(
+                '_controller' => 'nacholibreNewsBundle:Default:slug',
+            );
+            $requirements = array(
+            );
+            break;
+        default:
+            throw new \Exception('No such url type for nacholibre.news bundle: ' . $type);
         }
 
         $route = new Route($path, $defaults, $requirements);

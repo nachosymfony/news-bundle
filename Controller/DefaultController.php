@@ -43,6 +43,19 @@ class DefaultController extends Controller
         return $this->renderShowPage($post);
     }
 
+    public function slugAction($slug) {
+        $newsManager = $this->get('nacholibre.news.manager');
+        $repo = $newsManager->getRepo();
+
+        $post = $repo->findOneBy(
+            [
+                'slug' => $slug,
+            ]
+        );
+
+        return $this->renderShowPage($post);
+    }
+
     private function renderShowPage($post) {
         if (!$post) {
             throw $this->createNotFoundException('Post not found!');

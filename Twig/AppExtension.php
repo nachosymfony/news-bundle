@@ -33,6 +33,11 @@ class AppExtension extends \Twig_Extension {
                 'id' => $post->getID(),
             ]);
             break;
+        case "slug":
+            $url = $router->generate('nacholibre.news.show', [
+                'slug' => $post->getSlug(),
+            ]);
+            break;
         }
         return $url;
     }
