@@ -1,7 +1,13 @@
 services:
     add_news_form:
         class: nacholibre\NewsBundle\Form\PostType
-        arguments: ['@service_container']
+        arguments:
+            - '@service_container'
+            - "@nacholibre_doctrine_translatable_form_bundle.mapper"
+        calls:
+            - [ setRequiredLocales, [[%locale%]] ]
+            - [ setLocales, [%locales%] ]
+              #- [ setMapExistingDataTo, [%locale%] ]
         tags:
             - { name: form.type }
 

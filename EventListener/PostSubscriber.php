@@ -47,9 +47,9 @@ class PostSubscriber implements EventSubscriber {
 
         // perhaps you only want to act on some "Product" entity
         if ($post instanceof $this->postClass) {
-            $post->setModifiedAt(new \Datetime());
-            $slug = $this->slugger->slugify($post->getTitle());
-            $post->setSlug($slug);
+            //$post->setModifiedAt(new \Datetime());
+            //$slug = $this->slugger->slugify($post->getTitle());
+            //$post->setSlug($slug);
             //$entityManager = $args->getEntityManager();
             // ... do something with the Product
         }

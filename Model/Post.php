@@ -9,6 +9,9 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use Gedmo\Mapping\Annotation as Gedmo;
+use Gedmo\Translatable\Translatable;
+
 /**
  * @ORM\MappedSuperclass
  * @ORM\Table(indexes={@ORM\Index(name="post_slug", columns={"slug"}), @ORM\Index(name="date_slug", columns={"created_date_slug"})})
@@ -26,18 +29,21 @@ class Post
 
     /**
     * @Assert\NotBlank()
+    * @Gedmo\Translatable
     * @ORM\Column(type="string", length=255, unique=true)
     */
     protected $title;
 
     /**
     * @Assert\NotBlank()
+    * @Gedmo\Translatable
     * @ORM\Column(type="text")
     */
     protected $content;
 
     /**
-    * @ORM\Column(type="string", length=255, nullable=false)
+    * @Gedmo\Translatable
+    * @ORM\Column(type="string", length=255, unique=true, nullable=false)
     */
     protected $slug;
 
@@ -62,40 +68,37 @@ class Post
     protected $startDate;
 
     /**
+    * @Gedmo\Timestampable(on="create")
     * @ORM\Column(type="datetime")
     */
     protected $createdAt;
 
     /**
+    * @Gedmo\Timestampable(on="update")
     * @ORM\Column(type="datetime", nullable=true)
     */
     protected $modifiedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @Gedmo\Blameable(on="create")
+     * @ORM\ManyToOne(targetEntity="FOS\UserBundle\Model\UserInterface")
+     * @ORM\JoinColumn(name="created_by", referencedColumnName="id")
      */
-    protected $user;
+    protected $createdBy;
 
     /**
-     * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     *
-     * @Vich\UploadableField(mapping="news_image", fileNameProperty="imageName")
-     *
-     * @var File
+     * @Gedmo\Blameable(on="update")
+     * @ORM\ManyToOne(targetEntity="FOS\UserBundle\Model\UserInterface")
+     * @ORM\JoinColumn(name="updated_by", referencedColumnName="id")
      */
-    protected $imageFile;
+    protected $updatedBy;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     * @var string
+     * @ORM\OneToOne(targetEntity="nacholibre\NewsBundle\Entity\NewsImage")
      */
-    protected $imageName;
+    protected $image;
 
     function __construct() {
-        $this->setCreatedAt(new \Datetime());
-        $this->setCreatedDateSlug(new \Datetime());
     }
 
     /**
@@ -306,57 +309,5 @@ class Post
 
     public function getCreatedDateSlug() {
         return $this->createdDateSlug;
-    }
-
-    /**
-     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
-     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-     * must be able to accept an instance of 'File' as the bundle will inject one here
-     * during Doctrine hydration.
-     *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
-     *
-     * @return Product
-     */
-    public function setImageFile(File $image = null)
-    {
-        $this->imageFile = $image;
-
-        if ($image) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->setModifiedAt(new \DateTime('now'));
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return File
-     */
-    public function getImageFile()
-    {
-        return $this->imageFile;
-    }
-
-    /**
-     * @param string $imageName
-     *
-     * @return Product
-     */
-    public function setImageName($imageName)
-    {
-        $this->imageName = $imageName;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getImageName()
-    {
-        return $this->imageName;
     }
 }

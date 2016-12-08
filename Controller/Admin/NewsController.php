@@ -9,8 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 //use nacholibre\NewsBundle\Entity\Post;
 use nacholibre\NewsBundle\Form\PostType;
 
-class NewsController extends Controller
-{
+class NewsController extends Controller {
     function __construct() {
         //$params = $this->getParameter('nacholibre_news');
         //$this->postClass = $params['post_class'];
