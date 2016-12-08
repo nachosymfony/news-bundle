@@ -38,14 +38,16 @@ class PostType extends AbstractTranslatableType
 
         $translatableBuilder = $this->createTranslatableMapper($builder, $options);
 
+        $translator = $this->container->get('translator');
+
         $translatableBuilder
             ->add('title', TextType::class, [
-                'label' => 'Title'
+                'label' => $translator->trans('title')
             ])
         ;
 
         $translatableBuilder->add('slug', DynamicSlugType::class, [
-            'label' => 'Slug',
+            'label' => $translator->trans('slug'),
             'required' => true,
             'slug_input' => 'title',
             'toggable' => true,
@@ -70,17 +72,18 @@ class PostType extends AbstractTranslatableType
             $translatableBuilder->add('content', 'Ivory\CKEditorBundle\Form\Type\CKEditorType' , [
                 'config_name' => $editor['config_name'],
                 'config' => $editorConfig,
-                'label' => 'Content',
+                'label' => $translator->trans('content'),
                 'required' => true,
             ]);
         } else {
             $translatableBuilder->add('content', TextareaType::class , [
-                'label' => 'Content',
+                'label' => $translator->trans('content'),
                 'required' => true,
             ]);
         }
 
         $builder->add('image', 'nacholibre\RichUploaderBundle\Form\Type\RichUploaderType', [
+            'label' => $translator->trans('image'),
             'entity_class' => 'nacholibre\NewsBundle\Entity\NewsImage',
             'required' => true,
             'multiple' => false, //false for single files and true for multiple

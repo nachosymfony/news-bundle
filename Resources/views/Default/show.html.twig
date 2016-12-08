@@ -1,13 +1,13 @@
-{% extends "@App/layout.html.twig" %}
+{% extends "@App/page.html.twig" %}
 
 {% block title %}
 {{ post.title }}
 {{ parent() }}
 {% endblock %}
 
-{% block content %}
-<h1>{{ post.title }}</h1>
-<hr>
+{% block pageHeaderTitle post.title %}
+
+{% block pageContent %}
 {{ post.content | raw }}
 <hr>
 {% for post in latest %}

@@ -1,15 +1,19 @@
-Title: Заглавие
-Content: Съдържание
-Active: Активна
+title: Заглавие
+image: Изображение
+slug: Адрес
+content: Съдържание
+active: Активна
 Enable comments: Включи коментари
 Save: Запази
 Create: Създай
 News: Новини
 id: id
-Comments Enabled: Включени коментари
-Created: Създадена
-Modified: Променена
+comments_enabled: Включени коментари
+created: Създадена
+modified: Променена
+actions: Действия
 Show: Покажи
 Edit News: Промени новина
 Add News: Добави новина
-Post Photo: Снимка на новината
+yes: Да
+no: Не

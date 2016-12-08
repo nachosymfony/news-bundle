@@ -99,6 +99,7 @@ class Post
     protected $image;
 
     function __construct() {
+        $this->setCreatedDateSlug(new \Datetime());
     }
 
     /**
@@ -293,14 +294,6 @@ class Post
     public function getModifiedAt()
     {
         return $this->modifiedAt;
-    }
-
-    public function setUser($user) {
-        $this->user = $user;
-    }
-
-    public function getUser() {
-        return $this->user;
     }
 
     public function setCreatedDateSlug($slug) {
