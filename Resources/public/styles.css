@@ -1,3 +1,11 @@
-.nl .news .post h2 {
+.nl.news .post h2 {
     margin:0;
+    margin-bottom:10px;
+}
+
+.nl.news ul.recent_posts {
+    margin: 0;
+    list-style-type: square;
+    padding: 0;
+    padding-left: 15px;
 }

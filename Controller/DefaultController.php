@@ -34,6 +34,19 @@ class DefaultController extends Controller
         ]);
     }
 
+    public function recentPostsAction($max=6) {
+        $newsManager = $this->get('nacholibre.news.manager');
+        $repo = $newsManager->getRepo();
+
+        $posts = $repo->findBy([], [
+            'id' => 'DESC',
+        ], $max);
+
+        return $this->render('nacholibreNewsBundle:Default:_recentPosts.html.twig', [
+            'posts' => $posts,
+        ]);
+    }
+
     public function datePrefixedAction($year, $month, $day, $slug)
     {
         $dateSlug = sprintf('%s-%s-%s', $year, $month, $day);

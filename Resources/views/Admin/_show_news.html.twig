@@ -13,8 +13,10 @@
                             <tr>
                                 <th width=5%>{{ 'id' | trans }}</th>
                                 <th width=20%>{{ 'title' | trans }}</th>
+                                {#
                                 <th>{{ 'active' | trans }}</th>
                                 <th>{{ 'comments_enabled' | trans }}</th>
+                                #}
                                 <th>{{ 'created' | trans }}</th>
                                 <th>{{ 'modified' | trans }}</th>
                                 <th>{{ 'actions' | trans }}</th>
@@ -25,8 +27,10 @@
                             <tr>
                                 <td><a target='_blank' href="{{ nacholibre_news_post_link(post) }}">{{ post.id }}</a></td>
                                 <td>{{ post.title }}</td>
+                                {#
                                 <td>{% if post.active %}{{ 'yes' | trans }}{% else %}{{ 'no' | trans }}{% endif %}</td>
                                 <td>{% if post.commentsEnabled %}{{ 'yes' | trans }}{% else %}{{ 'no' | trans }}{% endif %}</td>
+                                #}
                                 <td>{% if post.createdAt %}{{ post.createdAt | date('Y-m-d H:i:s') }}{% endif %}</td>
                                 <td>{% if post.modifiedAt %}{{ post.modifiedAt | date('Y-m-d H:i:s') }}{% endif %}</td>
                                 <td>

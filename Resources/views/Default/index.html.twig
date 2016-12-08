@@ -8,17 +8,17 @@
 {% block pageHeaderTitle 'news' | trans({}, 'titles') %}
 
 {% block pageContent %}
-<link href="{{ asset('bundles/nacholibrenewsbundle/styles.css') }}" rel="stylesheet">
+<link href="{{ asset('bundles/nacholibrenews/styles.css') }}" rel="stylesheet">
 
-<div class='row nl'>
-    <div class='col-md-9 news'>
+<div class='row nl news'>
+    <div class='col-md-9'>
         {% if not news | length %}
         <h2>There is nothing here.</h2>
         {% endif %}
         {% for post in news %}
         <div class='post'>
             <h2>
-                <a href='#'>{{ post.title }}</a>
+                <a href='{{ nacholibre_news_post_link(post) }}'>{{ post.title }}</a>
             </h2>
             {{ post.content | raw }}
             <div>
@@ -32,12 +32,10 @@
     <div class='col-md-3'>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Recent posts</h3>
+                <h3 class="panel-title">{{ 'recent_posts' | trans({}, 'messages') }}</h3>
             </div>
             <div class="panel-body">
-                asd<br />
-                asd<br />
-                asd<br />
+                {{ render(controller('nacholibreNewsBundle:Default:recentPosts', {max: 6})) }}
             </div>
         </div>
     </div>
