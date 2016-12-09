@@ -8,6 +8,10 @@ class NewsManager {
         $this->em = $em;
     }
 
+    public function getClassName() {
+        return $this->className;
+    }
+
     public function getRepo() {
         $repo = $this->em->getRepository($this->className);
         return $repo;
