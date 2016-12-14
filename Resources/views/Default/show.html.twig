@@ -9,10 +9,11 @@
 
 {% block pageContent %}
 {{ post.content | raw }}
-<hr>
+{#
 {% for post in latest %}
 {{ nacholibre_news_post_link(post) }}
 {{ post.title }}
 <hr>
 {% endfor %}
+#}
 {% endblock %}

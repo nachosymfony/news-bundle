@@ -16,15 +16,18 @@
         <h2>There is nothing here.</h2>
         {% endif %}
         {% for post in news %}
-        <div class='post'>
-            <h2>
-                <a href='{{ nacholibre_news_post_link(post) }}'>{{ post.title }}</a>
-            </h2>
-            {{ post.content | raw }}
-            <div>
+        <div class="post panel panel-default">
+            <div class="panel-heading">
+                <h2>
+                    <a href='{{ nacholibre_news_post_link(post) }}'>{{ post.title }}</a>
+                </h2>
+            </div>
+            <div class="panel-body">
+                {{ post.content | raw }}
+            </div>
+            <div class="panel-footer">
                 {{ post.getCreatedAt() | date('Y/m/d') }}
             </div>
-            <hr>
         </div>
         {% endfor %}
         {{ knp_pagination_render(news) }}
